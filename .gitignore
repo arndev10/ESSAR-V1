@@ -1,0 +1,12 @@
+build/
+__pycache__/
+*.pyc
+*.pyo
+*.exe
+.Python
+*.egg-info/
+.eggs/
+dist/
+*.spec.bak
+*.rar
+*.zip
