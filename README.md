@@ -1,55 +1,57 @@
-# Generador Essar
+# ESSAR Generator
 
-Aplicación de escritorio para generar archivos Excel a partir de una plantilla y archivos en una carpeta de insumos. La plantilla va incluida en el ejecutable; no requiere Python para usarla.
+Desktop application that generates Excel reports from a template and input files. The template is bundled into the executable — no Python installation required for end users.
 
-## Uso (ejecutable)
+## Features
 
-1. Generar el ejecutable (una vez): ver [Construir el ejecutable](#construir-el-ejecutable).
-2. Abrir **Generador Essar.exe**.
-3. **Carpeta insumos:** elegir la carpeta con los Excel de entrada.
-4. **Carpeta salidas:** elegir dónde guardar los resultados.
-5. Pulsar **Generar**.
+- GUI for selecting input/output folders
+- Batch processing of Excel input files
+- Template-based report generation
+- Standalone .exe via PyInstaller (Windows)
 
-Los archivos se guardan en `salidas/<nombre_archivo_insumo>/` como `ESAR__{col1}__{col2}__{col3}.xlsx`.
+## Tech Stack
 
-## Uso (desarrollo con Python)
+**Language:** Python 3.10+
+**Libraries:** pandas, openpyxl
+**Packaging:** PyInstaller
+
+## Usage (executable)
+
+1. Build the executable (once): see [Build](#build-executable)
+2. Open `Generador Essar.exe`
+3. Select input folder (Excel files) and output folder
+4. Click Generate
+
+Output files are saved as `ESAR__{col1}__{col2}__{col3}.xlsx`.
+
+## Usage (development)
 
 ```bash
 pip install -r requirements.txt
 python app.py
 ```
 
-Misma interfaz; la plantilla está en el repo y se usa por defecto.
+## Build Executable
 
-## Contenido del repositorio
+```bash
+pip install -r requirements.txt
+pip install pyinstaller
+build.bat
+```
 
-| Archivo | Descripción |
-|---------|-------------|
-| `app.py` | Interfaz de la aplicación. |
-| `generador.py` | Lógica del generador Excel. |
-| `GeneradorEssar.spec` | Configuración de PyInstaller. |
-| `build.bat` | Genera el ejecutable (Windows). |
-| `requirements.txt` | Dependencias (pandas, openpyxl). |
-| `plantilla.xlsx` | Plantilla Excel incluida en el repo; se empaqueta en el .exe. |
+The .exe is created in the project root with the template bundled in.
 
-El ejecutable (**Generador Essar.exe**) no se sube al repo; se genera localmente con `build.bat`.
+## Project Structure
 
-## Construir el ejecutable
+```
+├── app.py                # GUI application
+├── generador.py          # Excel generation logic
+├── plantilla.xlsx        # Template (bundled in .exe)
+├── GeneradorEssar.spec   # PyInstaller config
+├── build.bat             # Build script
+└── requirements.txt
+```
 
-1. Python 3.10+ instalado.
-2. Ejecutar:
-   ```bat
-   build.bat
-   ```
-   O manualmente:
-   ```bat
-   pip install -r requirements.txt
-   pip install pyinstaller
-   py -3 -m PyInstaller GeneradorEssar.spec --noconfirm --distpath . --workpath build
-   ```
-3. El .exe se crea en la misma carpeta (incluye la plantilla).
+## License
 
-## Requisitos
-
-- **Para usar el .exe:** solo Windows; no hace falta instalar nada.
-- **Para desarrollar o construir:** Python 3.10+, pip.
+Open source — available for personal and educational use.
